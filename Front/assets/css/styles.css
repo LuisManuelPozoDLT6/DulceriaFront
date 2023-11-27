@@ -1,0 +1,173 @@
+:root{
+    --morado: #4B2883;
+    --rosa: #B640C1;
+}
+
+.bg-morado{
+    background-color: var(--morado);
+}
+
+.bg-rosa{
+    background-color: var(--rosa);
+}
+
+.text-rosa{
+    color: var(--rosa);
+}
+
+.text-morado{
+    color: var(--morado);
+}
+
+.btn-rosa{
+    background-color: var(--rosa);
+    color: white;
+}
+
+.btn-morado{
+    background-color: var(--morado);
+    color: white;
+}
+
+.btn-morado:hover{
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.1); 
+}
+
+.login{
+    background-image: url(../images/bg-login.png);
+    background-size:cover;
+    background-repeat: no-repeat;
+}
+
+
+/* .login-bg{
+    background-image: url(/assets/images/Login.png);
+    background-size: cover; 
+    background-repeat: no-repeat;
+} */
+
+/* .navbar-nav .nav-item .active {
+    background-color: var(--rosa);
+    color: #ffffff;
+    height: 70px;
+}
+
+.navbar-nav .nav-item a{
+    display: flex;
+    height: 70px;
+    align-items: center;
+}
+
+.navbar {
+    height: 70px;
+} */
+
+.card-store{
+    border-radius: 41px;
+    margin-right: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.card-store:hover{
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1)!important;
+}
+
+.card-product:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1)!important;
+}
+
+.card-visit:hover{
+    cursor: pointer;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.1)!important;
+}
+
+.card-store-large{
+    border-radius: 54px;
+    margin-bottom: 10px;
+}
+
+.img-redonda{
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.circle-visit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%;
+    color: #fff;
+}
+
+.circle-visit-large{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%;
+    color: #fff;
+}
+
+.mrl-3{
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.mrl-3 p i{
+    margin-right: 10px;
+    font-size: 30px;
+}
+
+.btn-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px !important;
+    height: 30px !important;
+    padding: 1px 0px !important;
+    border-radius: 15px !important;
+    font-size: 15px !important;
+}
+
+.img-cover{
+    object-fit: cover;
+}
+
+.imgTable{
+    display: inline-block;
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.btn-circle-table {
+    width: 30px !important;
+    height: 30px !important;
+    padding: 6px 0px !important;
+    border-radius: 15px !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    line-height: 1.42857 !important;
+    color: #ffffff !important;
+    position: relative !important;
+    top: auto !important;
+}
+
+.btn-esquina {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 10px;
+    /* border: none; */
+    border-radius: 5px;
+    width: 200px;
+}
