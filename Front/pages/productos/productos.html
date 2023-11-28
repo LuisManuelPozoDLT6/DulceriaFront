@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Productos | Golosinadora</title>
+  <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="../../assets/css/sweetalert2.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -96,10 +98,48 @@
     </div>
   </div>
 
+  <!-- edit -->
+  <div class="modal fade" id="productModalUpdate" tabindex="-1" aria-labelledby="productModalUpdateLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalUpdateLabel">Editar producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <label for="exampleInputEmail1" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nameUpdate">
+                </div>
+                <div class="col-md-6 mb-2">
+                  <label for="exampleInputPassword1" class="form-label">Precio</label>
+                  <input type="number" class="form-control" id="priceUpdate">
+                </div>
+                <input hidden type="number" class="form-control" id="idUpdate">
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Descripción</label>
+                  <textarea class="form-control" placeholder="Leave a comment here" id="descriptionUpdate"></textarea>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-morado" onclick="updateProduct()">Modificar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../../assets/js/axios/axios-intance.js"></script>
   <script src="../../assets/js/jquery-3.7.1.min.js"></script>
   <script src="../../assets/js/products/products.js"></script>
+  <script src="../../assets/js/sweetAlert/sweetalert2.all.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
