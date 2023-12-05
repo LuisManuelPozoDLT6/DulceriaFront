@@ -5,10 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Productos | Golosinadora</title>
-  <link rel="shortcut icon" href="../../assets/images/logo.png" type="image/x-icon">
-  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="shortcut icon" href="../../../assets/images/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <link rel="stylesheet" href="../../assets/css/sweetalert2.min.css">
+  <link rel="stylesheet" href="../../../assets/css/sweetalert2.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
     integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -19,7 +19,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-morado text-center">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        <img src="../../assets/images/logo-blanco.png" alt="" width="45" height="45">
+        <img src="../../../assets/images/logo-blanco.png" alt="" width="45" height="45">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,18 +28,22 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item ">
-            <a class="nav-link" aria-current="page" href="../../pages/stores/stores.html">Tiendas</a>
+            <a class="nav-link " aria-current="page" href="../stores/stores.html">Tiendas</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link active" aria-current="page" href="../../pages/productos/productos.html">Productos</a>
+            <a class="nav-link active" aria-current="page" href="../productos/productos.html">Productos</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link " aria-current="page" href="../../pages/pedidos/pedidos.html">Pedidos</a>
+            <a class="nav-link " aria-current="page" href="../repartidores/repartidores.html">Repartidores</a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link " aria-current="page" href="../../pages/repartidores/repartidores.html">Repartidores</a>
+            <a class="nav-link " aria-current="page" href="../administradores/administradores.html">Administradores</a>
           </li>
         </ul>
+        <div class="ms-auto">
+          <span id="userNameLogged" class="text-light me-2"></span>
+          <button id="btnLogout" class="btn btn-rosa rounded-pill"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        </div>
       </div>
     </div>
   </nav>
@@ -137,13 +141,14 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="../../assets/js/axios/axios-intance.js"></script>
-  <script src="../../assets/js/jquery-3.7.1.min.js"></script>
-  <script src="../../assets/js/products/products.js"></script>
-  <script src="../../assets/js/sweetAlert/sweetalert2.all.min.js"></script>
+  <script src="../../../assets/js/axios/axios-intance.js"></script>
+  <script src="../../../assets/js/jquery-3.7.1.min.js"></script>
+<script src="../../../assets/js/main.js"></script>
+  <script src="../../../assets/js/sweetAlert/sweetalert2.all.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
+  <script src="../../../assets/js/products/products.js"></script>
   <script>
     getProducts();
   </script>

@@ -1,5 +1,3 @@
-
-
 const getStores = async () => {
     let stores = ``;
     try {
@@ -29,6 +27,40 @@ const getStores = async () => {
     }
 }
 
+const getDeliverStore = async () => {
+    const idDeliver = localStorage.getItem('idPerson');
+    let stores = ``;
+    try {
+        const response = await axiosClient.get(`/store/deliver/${idDeliver}`);
+
+        if (response.data.length == 0) {
+            stores = `<h2 class="mt-3 text-secondary">No tienes tiendas asignadas por el momento</h2>`
+        }else{
+            response.data.forEach((store, index) => {
+                stores += `
+                <div class="col-md-4 col-sm-6 mb-5">
+                    <div class="card card-store shadow">
+                        <div class="card-body text-center pt-5 pb-3">
+                            <h5 class="${index % 2 == 0 ? 'text-rosa' : 'text-morado'}"><i class="fas fa-store fa-3x"></i></h5>
+                            <h4>${store.name}</h4>
+                            <p><i class="fa-solid fa-location-dot"></i> ${store.address}</p>
+                            <div class="d-flex justify-content-end">
+                                <button type="button" onClick="getStoreId(${store.id})" class="btn btn-morado btn-circle"><i
+                                        class="fa-solid fa-eye"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                `;
+            });
+        }
+        document.getElementById('deliverStores').innerHTML = stores;
+        console.log(response);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const saveOwner = async (owner) => {
     let ownerRegistered;
     try {
@@ -43,17 +75,16 @@ const saveOwner = async (owner) => {
 const getById = async () => {
     const storeId = localStorage.getItem('selectedStoreId');
     try {
-        const responseDeliver = await axiosClient.get(`/person/`);
+        const responseDeliver = await axiosClient.post(`/user/Repatidor/`, {id:2});
         console.log(responseDeliver);
         let selectDelivers = $("#delivers");
-        selectDelivers.append(`<option value="0">Señeccione un repartidor</option>`)
         const response = await axiosClient.get(`/store/${storeId}`);
 
         for (let i = 0; i < responseDeliver.data.length; i++) {
-            if (responseDeliver.data[i].id === responseDeliver.data.id) {
-                option.selected = true;
-            }
-            selectDelivers.append(`<option value="${responseDeliver.data[i].id}">${responseDeliver.data[i].name} ${responseDeliver.data[i].lastName}</option>`)
+            // if (responseDeliver.data[i].id === response.data.deliver.id) {
+            //     option.selected = true;
+            // }
+            selectDelivers.append(`<option value="${responseDeliver.data[i].person.id}">${responseDeliver.data[i].person.name} ${responseDeliver.data[i].person.lastName}</option>`)
         }
 
         document.getElementById('nameUpdate').value = response.data.name;
@@ -70,6 +101,7 @@ const getById = async () => {
     }
 }
 
+
 const updateStore = async () => {
     const storeId = localStorage.getItem('selectedStoreId');
     let owner = {
@@ -78,8 +110,6 @@ const updateStore = async () => {
         "phone": document.getElementById('phoneUpdate').value   
     }
     
-
-
     try {
         const responseOwner = await axiosClient.put(`/person/${owner.id}`, owner);
 
@@ -113,6 +143,58 @@ const updateStore = async () => {
         });
     }
 }
+
+const saveVisit = async () => {
+    try {
+        const storeId = localStorage.getItem('selectedStoreId');
+        console.log(storeId);
+        const fechaInput = document.getElementById("visitDay").value;
+        const fecha = new Date(fechaInput);
+        const day = fecha.getUTCDate();
+        const month = fecha.toLocaleString('default', { month: 'long', timeZone: 'UTC' });
+        const year = fecha.getUTCFullYear();
+
+        const visit = {
+            "day_visit": `${day} de ${month} del ${year}`,
+            "status": {
+                "id": 1
+            },
+            "store": {
+                "id": storeId
+            }
+        };
+        console.log(visit);
+
+        const response = await axiosClient.post(`/visits/`, visit);
+
+        const order = {
+            "status": {
+                "id": 1
+            },
+            "visit": response.data
+        };
+
+        const responseOrder = await axiosClient.post(`/orders/`, order);
+
+        getStoreById(storeId);
+        $('#saveVisitModal').modal('hide');
+        Swal.fire({
+            icon: "success",
+            title: "Se registró la visita",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    } catch (error) {
+        console.error(error);
+        Swal.fire({
+            icon: "error",
+            title: "Ocurrió un error al registrar la visita",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+};
+
 
 const saveStore = async () => {
     let owner = {
@@ -177,19 +259,21 @@ const getStoreId = (id) => {
 
 const getDelivers = async () => {
     try {
-        const response = await axiosClient.get(`/person/`);
-        console.log(response);
+        const response = await axiosClient.post(`/user/Repatidor/`, {id:2});
+        console.log(response.data);
+        
         let selectDelivers = $("#delivers");
-        selectDelivers.append(`<option value="0">Señeccione un repartidor</option>`)
+        selectDelivers.append(`<option value="0">Seleccione un repartidor</option>`);
 
         for (let i = 0; i < response.data.length; i++) {
-            selectDelivers.append(`<option value="${response.data[i].id}">${response.data[i].name} ${response.data[i].lastName}</option>`)
+            selectDelivers.append(`<option value="${response.data[i].person.id}">${response.data[i].person.name} ${response.data[i].person.lastName}</option>`);
         }
 
     } catch (error) {
         console.log(error);
     }
-}
+};
+
 
 const getVisits = async (id) => {
     let visits;
@@ -202,8 +286,59 @@ const getVisits = async (id) => {
     return visits;
 }
 
+const getVisitInfo = async (id) => {
+    let productsOrder = ``;
+    let subTotal = 0;
+    
+    try {
+        const response = await axiosClient.get(`/orders/visit/${id}`);
+        listProducts = response.data.productList;
+        document.getElementById('visitDate').innerText = `Visita ${response.data.visit.day_visit}`;
+        if (response.data.visit.status.id != 1) {
+            
+            document.getElementById('observaciones').innerText = `Visita ${response.data.observaciones}`;
+    
+    
+            listProducts.forEach(product => {
+                subTotal += product.cantidad * product.product.price;
+                productsOrder += `
+                    <li class="list-group-item">
+                        <div class="row align-items-center">
+                            <div class="col-2">
+                                <span>${product.cantidad}</span>
+                            </div>
+                            <div class="col-4 align-items-start">
+                                <img src="${product.product.image}" alt="Productos" class="img-fluid">
+                            </div>
+                            <div class="col">
+                                <h6>${product.product.name}</h6>
+                                <p class="text-rosa">$${product.product.price}</p>
+                            </div>
+                        </div>
+                    </li>
+                `;
+            })
+    
+            document.getElementById('listaProducts').innerHTML = productsOrder;
+            document.getElementById('subTotal').innerText = `$${subTotal}`;
+            
+        }else{
+            document.getElementById('modalVisitInfoBody').innerHTML = `
+                <h1 class="text-secondary">Aún no hay info por mostrar</h1>
+                <p>El repartidor no ha registrado información en esta visita</p>
+                `;
+        }
+        
+        $('#infoVisit').modal('show');
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 const getStoreById = async () => {
     const storeId = localStorage.getItem('selectedStoreId');
+    const role = localStorage.getItem('activeRole');
     let store = ``;
     let repartidor = ``;
     let visitCard = ``;
@@ -234,8 +369,8 @@ const getStoreById = async () => {
             </div>
             <div class="flex-grow-1 ms-3">
                 <h4 class="d-flex align-items-center justify-content-between">
-                <span class="fw-bold">Repartidor asignado</span>
-                <i onclick="getById()" style="font-size: 20px;" class="fa-solid fa-pen-to-square"></i>
+                <span class="fw-bold">Repartidor asignado</span> 
+                ${role != 'Repartidor' ? '<i onclick="getById()" style="font-size: 20px;" class="fa-solid fa-pen-to-square"></i>' : ''}
                 </h4>
                 <h6 class="fw-lighter" style="font-size: 17px;">${response.data.deliver.name + ' ' + response.data.deliver.lastName}</h6>
             </div>
@@ -243,12 +378,12 @@ const getStoreById = async () => {
 
         visits.forEach((visit, index) => {
             visitCard += `
-            <div class="col-md-4 col-6 mb-4 " >
-                <div class="card shadow card-visit" data-bs-toggle="modal" style="height:200px;" data-bs-target="#exampleModal">
+            <div class="col-md-4 col-6 mb-4 " onclick="getVisitInfo(${visit.id})">
+                <div class="card shadow card-visit" data-bs-toggle="modal" style="height:200px;">
                     <div class="card-body text-center overflow-auto">
                         <h3 class="circle-visit mx-auto ${index % 2 == 0 ? 'bg-rosa' : 'bg-morado'}"><i class="fa-solid fa-calendar-days"></i></h3>
                         <p>${visit.day_visit}</p>
-                        <span class="badge bg-success">${visit.status.desciprtion}</span>
+                        <span class="badge ${visit.status.id != 1 ? 'bg-success' : 'bg-warning'}">${visit.status.desciprtion}</span>
                     </div>
                 </div>
             </div>
@@ -259,12 +394,10 @@ const getStoreById = async () => {
         document.getElementById('store').innerHTML = store;
         document.getElementById('deliver').innerHTML = repartidor;
         document.getElementById('visits').innerHTML = visitCard;
+        
     } catch (error) {
         console.log(error);
     }
 }
 
-const hola= () =>{
-    console.log('hello world');
-}
 

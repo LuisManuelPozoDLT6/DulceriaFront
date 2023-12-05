@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedido | Golosinadora</title>
+  <link rel="shortcut icon" href="../../../assets/images/logo.png" type="image/x-icon">
+  <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+  <link rel="stylesheet" href="../../../assets/css/sweetalert2.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-morado text-center">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="../../../assets/images/logo-blanco.png" alt="" width="45" height="45">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item ">
+            <a class="nav-link " aria-current="page" href="../stores/stores.html">Tiendas</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link active" aria-current="page" href="../visitas/visitas.html">Visitas</a>
+          </li>
+        </ul>
+        <div class="ms-auto">
+          <span id="userNameLogged" class="text-light me-2">Nombre de Usuario</span>
+          <button id="btnLogout" class="btn btn-rosa rounded-pill"><i
+              class="fa-solid fa-arrow-right-from-bracket"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="d-flex flex-column align-items-center justify-content-center mt-3" id="tienda">
+
+  </div>
+
+  <div class="container">
+    <div class="row" id="products">
+
+    </div>
+  </div>
+
+  <button class="btn btn-esquina btn-morado rounded-pill" onclick="getOrderInfo()">Ver pedido</button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="productModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="productModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">Agregar a pedido</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            onclick="cleanInputPrice()"></button>
+        </div>
+        <div class="modal-body text-center" id="modalProduct">
+
+        </div>
+        <form onsubmit="addProduct(event)">
+          <div class="modal-footer">
+            <div class="input-group" style="width: 70px;">
+              <input type="number" required min="1" class="form-control" id="cantidad" value="1"
+                oninput="updatePrice()">
+            </div>
+            <button type="submit" id="btnAdd" class="btn btn-morado"></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-5">
+
+  </div>
+
+
+
+
+  <script src="../../../assets/js/orders/orders.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../../../assets/js/axios/axios-intance.js"></script>
+  <script src="../../../assets/js/jquery-3.7.1.min.js"></script>
+  <script src="../../../assets/js/main.js"></script>
+  <script src="../../../assets/js/visits/visits.js"></script>
+  <script src="../../../assets/js/sweetAlert/sweetalert2.all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <script>
+    getProducts();
+    getStoreById();
+  </script>
+</body>
+
+</html>

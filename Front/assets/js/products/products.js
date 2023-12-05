@@ -7,7 +7,7 @@ const getProducts = async () => {
             <div class="col-md-4 col-sm-6 ">
                 <div class="card">
                     <div class="card-body text-center">
-                        <img src="../../assets/images/paletas.png" width="150px" height="150px" class="img-cover" alt="">
+                        <img src="${product.image}" width="150px" height="150px" class="img-cover" alt="">
                         <h5>${product.name}</h5>
                         <h5 style="margin-top: -5px;">${'$' +product.price}</h5>
                         <p class="text-secondary mrl-3">${product.description}</p>
@@ -33,7 +33,8 @@ const updateProduct = async () => {
         "id": document.getElementById('idUpdate').value,
         "name": document.getElementById('nameUpdate').value,
         "description": document.getElementById('descriptionUpdate').value,
-        "price": document.getElementById('priceUpdate').value
+        "price": document.getElementById('priceUpdate').value,
+        "image": document.getElementById('imageUpdate').value
     }
 
     try {
@@ -64,6 +65,7 @@ const getProductById = async (id) => {
         document.getElementById('nameUpdate').value = response.data.name;
         document.getElementById('priceUpdate').value = response.data.price;
         document.getElementById('descriptionUpdate').value = response.data.description;
+        document.getElementById('imageUpdate').value = response.data.image;
         console.log(response);
 
         $('#productModalUpdate').modal('show');
@@ -74,15 +76,27 @@ const getProductById = async (id) => {
 
 
 const saveProduct = async () => {
-    let product = {
-        "name": document.getElementById('name').value,
-        "description": document.getElementById('description').value,
-        "price": document.getElementById('price').value,
-        "image": "urlimage"
-    }
+    const form = new FormData();
+    const fileInput = document.getElementById('formFile');
+    let selectedFile = fileInput.files[0];
+    form.append('file', selectedFile);
+    form.append('name', document.getElementById('name').value);
+    form.append('description', document.getElementById('description').value);
+    form.append('price', document.getElementById('price').value);
 
-    console.log(product);
-    axiosClient.post(`/product/`, product)
+    // let product = {
+    //     "name": document.getElementById('name').value,
+    //     "description": document.getElementById('description').value,
+    //     "price": document.getElementById('price').value,
+    //     "image": "urlimage"
+    // }
+
+    //console.log(product);
+    axiosClient.post(`/product/`, form, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
         .then(response => {
             console.log('Respuesta del servidor:', response.data);
             cleanForm();
