@@ -1,3 +1,5 @@
+const avatarPath = '../../../assets/images/avatar.png';
+
 const getStores = async () => {
     let stores = ``;
     try {
@@ -296,8 +298,10 @@ const getVisitInfo = async (id) => {
         document.getElementById('visitDate').innerText = `Visita ${response.data.visit.day_visit}`;
         if (response.data.visit.status.id != 1) {
             
-            document.getElementById('observaciones').innerText = `Visita ${response.data.observaciones}`;
-    
+            if (response.data && response.data.observaciones !== null && response.data.observaciones !== undefined) {
+                document.getElementById('observaciones').innerText = `Visita ${response.data.observaciones}`;
+            }
+                
     
             listProducts.forEach(product => {
                 subTotal += product.cantidad * product.product.price;
@@ -321,15 +325,18 @@ const getVisitInfo = async (id) => {
     
             document.getElementById('listaProducts').innerHTML = productsOrder;
             document.getElementById('subTotal').innerText = `$${subTotal}`;
+            $('#infoVisit').modal('show');
             
         }else{
-            document.getElementById('modalVisitInfoBody').innerHTML = `
-                <h1 class="text-secondary">Aún no hay info por mostrar</h1>
-                <p>El repartidor no ha registrado información en esta visita</p>
-                `;
+            Swal.fire({
+                icon: "info",
+                title: "Aún no se han registrado datos en esta visita",
+                showConfirmButton: false,
+                timer: 2500
+            });
         }
         
-        $('#infoVisit').modal('show');
+       
 
     } catch (error) {
         console.log(error);
@@ -344,6 +351,7 @@ const getStoreById = async () => {
     let visitCard = ``;
     try {
         const response = await axiosClient.get(`/store/${storeId}`);
+        const responseDeliver = await axiosClient.get(`/user/person/${response.data.deliver.id}`)
         const visits = await getVisits(storeId);
         console.log(visits);
         console.log(response.data);
@@ -364,7 +372,7 @@ const getStoreById = async () => {
         repartidor = `
             <div class="flex-shrink-0">
                 <img
-                src="https://media.glamour.mx/photos/643744437c542dd2fac99d96/3:2/w_2559,h_1706,c_limit/lana_del_rey.jpg"
+                src="${responseDeliver.data.image != null ? responseDeliver.data.image : avatarPath}"
                 class="img-redonda">
             </div>
             <div class="flex-grow-1 ms-3">

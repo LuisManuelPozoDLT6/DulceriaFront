@@ -83,6 +83,7 @@ const saveProduct = async () => {
     form.append('name', document.getElementById('name').value);
     form.append('description', document.getElementById('description').value);
     form.append('price', document.getElementById('price').value);
+    console.log(form);
 
     // let product = {
     //     "name": document.getElementById('name').value,

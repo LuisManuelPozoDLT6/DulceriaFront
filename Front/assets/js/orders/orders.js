@@ -1,3 +1,5 @@
+
+
 const getProducts = async () => {
     let products = ``;
     try {
@@ -9,7 +11,7 @@ const getProducts = async () => {
                         <div class="card-body text-center">
                         <img src="${product.image}" width="100px" height="100px" class="img-cover" alt="">
                         <h5>${product.name}s</h5>
-                        <h5 style="margin-top: -5px;">${'$' +product.price}</h5>
+                        <h5 style="margin-top: -5px;">${'$' + product.price}</h5>
                         <p class="text-secondary">${product.description}</p>
                         </div>
                     </div>
@@ -23,7 +25,7 @@ const getProducts = async () => {
     }
 }
 
-const getProductById = async (id) =>{
+const getProductById = async (id) => {
     let product = ``;
     try {
         const response = await axiosClient.get(`/product/${id}`)
@@ -36,7 +38,7 @@ const getProductById = async (id) =>{
             <input type="number" id="idProduct" hidden value="${response.data.id}">
             <input type="number" id="priceProduct" hidden value="${response.data.price}">
         `
-        document.getElementById("btnAdd").innerHTML  = `Agregar <span style="font-size: small;">$${parseFloat(response.data.price).toFixed(2)}</span>`;
+        document.getElementById("btnAdd").innerHTML = `Agregar <span style="font-size: small;">$${parseFloat(response.data.price).toFixed(2)}</span>`;
         document.getElementById('modalProduct').innerHTML = product;
     } catch (error) {
         console.log(error);
@@ -64,7 +66,7 @@ const makeOrder = async () => {
     const visitId = localStorage.getItem('selectedVisitId');
     try {
         const responseOrder = await axiosClient.get(`/orders/visit/${visitId}`);
-        
+
     } catch (error) {
         console.log(error);
     }
@@ -82,7 +84,7 @@ const addProduct = async (event) => {
             "product": {
                 "id": document.getElementById('idProduct').value,
             },
-            "order":{
+            "order": {
                 "id": responseOrder.data.id
             }
         }
@@ -112,7 +114,7 @@ const updatePrice = () => {
     cantidad = document.getElementById("cantidad").value;
     precio = document.getElementById("priceProduct").value;
     total = `
-        Agregar <span style="font-size: small;">$${parseFloat( cantidad * precio).toFixed(2)}</span>
+        Agregar <span style="font-size: small;">$${parseFloat(cantidad * precio).toFixed(2)}</span>
     `;
 
     document.getElementById("btnAdd").innerHTML = total;
@@ -138,25 +140,25 @@ const deleteProductFromOrder = async (id) => {
     }).then(async (result) => {
         if (result.isConfirmed) {
             await axiosClient.delete(`/ordershasproduct/${id}`)
-            .then(response => {
-                console.log('Eliminación exitosa:', response.data);
-                Swal.fire({
-                    icon: "success",
-                    title: "Se eliminó el producto de la orden",
-                    showConfirmButton: false,
-                    timer: 1500
+                .then(response => {
+                    console.log('Eliminación exitosa:', response.data);
+                    Swal.fire({
+                        icon: "success",
+                        title: "Se eliminó el producto de la orden",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    getOrder();
+                })
+                .catch(error => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Ocurrió un error al eliminar el producto de la orden",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    console.error('Error al eliminar:', error);
                 });
-                getOrder();
-            })
-            .catch(error => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Ocurrió un error al eliminar el producto de la orden",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                console.error('Error al eliminar:', error);
-            });
         } else {
             Swal.fire({
                 title: "Cancelado",
@@ -165,7 +167,7 @@ const deleteProductFromOrder = async (id) => {
             });
         }
     });
-    
+
 }
 
 const getOrder = async () => {

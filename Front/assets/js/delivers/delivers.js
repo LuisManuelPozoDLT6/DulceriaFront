@@ -1,3 +1,5 @@
+const avatarPath = '../../../assets/images/avatar.png';
+const adminAvatarPath = '../../../assets/images/adminAvatar.png';
 const savePerson = async (person) => {
     let personRegistered;
     try {
@@ -19,7 +21,7 @@ const getDelivers = async () => {
                     <th scope="">${index +1}</th>
                     <td>
                         <img class="imgTable"
-                            src="https://i0.wp.com/tracklist.com.br/wp-content/uploads/2022/08/lana-1.png?fit=1200%2C675&ssl=1"
+                            src="${deliver.image != null ? deliver.image : avatarPath}"
                             alt="...">
                     </td>
                     <td>${deliver.person.name + ' ' + deliver.person.lastName}</td>
@@ -31,7 +33,7 @@ const getDelivers = async () => {
                         <button type="button" onclick="getDeliverId(${deliver.person.id})" class="btn bg-morado btn-circle-table m-1"><i
                             class="fas fa-store"></i>
                         </button>
-                        <button type="button" class="btn bg-morado btn-circle-table m-1"><i
+                        <button type="button" onclick="getDeliverById(${deliver.person.id})" class="btn bg-morado btn-circle-table m-1"><i
                             class="fa-solid fa-pen-to-square"></i></button>
                     </td>
                 </tr>
@@ -54,7 +56,7 @@ const getAdmins = async () => {
                     <th scope="">${index +1}</th>
                     <td>
                         <img class="imgTable"
-                            src="https://i0.wp.com/tracklist.com.br/wp-content/uploads/2022/08/lana-1.png?fit=1200%2C675&ssl=1"
+                            src="${deliver.image != null ? deliver.image : adminAvatarPath}"
                             alt="...">
                     </td>
                     <td>${deliver.person.name + ' ' + deliver.person.lastName}</td>
@@ -63,7 +65,7 @@ const getAdmins = async () => {
                     <td class="text-end">
                         <button type="button" onclick="setStatus(${deliver.id})" class="btn bg-morado btn-circle-table m-1"><i
                                     class="fa-solid fa-power-off" ></i></button>
-                        <button type="button" class="btn bg-morado btn-circle-table m-1"><i
+                        <button type="button" onclick="getDeliverById(${deliver.person.id})"  class="btn bg-morado btn-circle-table m-1"><i
                             class="fa-solid fa-pen-to-square"></i></button>
                     </td>
                 </tr>
@@ -115,7 +117,6 @@ const setStatus = async (id) => {
     });
 }
 
-
 const updateStore = async () => {
     const storeId = localStorage.getItem('selectedStoreId');
     let owner = {
@@ -162,43 +163,273 @@ const getDeliverId = (id) => {
     window.location.href = '../visitas/visitas.html'
 }
 
+const saveProduct = async () => {
+    const form = new FormData();
+    const fileInput = document.getElementById('formFile');
+    let selectedFile = fileInput.files[0];
+    form.append('file', selectedFile);
+    form.append('name', document.getElementById('name').value);
+    form.append('description', document.getElementById('description').value);
+    form.append('price', document.getElementById('price').value);
 
+    // let product = {
+    //     "name": document.getElementById('name').value,
+    //     "description": document.getElementById('description').value,
+    //     "price": document.getElementById('price').value,
+    //     "image": "urlimage"
+    // }
 
-
-// const saveDeliver = async () => {
-
-//     let person = {
-//         "id": 1,
-//         "name": document.getElementById('ownerName').value,
-//         "lastName": null,
-//         "address": null,
-//         "phone": "77789541236",
-//         "email": null,
-//         "edad": 0,
-//         "sexo": null,
-//         "name": document.getElementById('ownerName').value,
-//         "phone": document.getElementById('phone').value,
-//     }
-
-//     let deliver = {
-//         "username": "luispozo",
-//         "person": {
-//             "id": 1,
-//             "name": "luis manuel",
-//             "lastName": null,
-//             "address": null,
-//             "phone": "77789541236",
-//             "email": null,
-//             "edad": 0,
-//             "sexo": null
-//         },
-//         "status": 1,
-//         "authorities": [
-//             {
-//                 "id": 2
-//             }
-//         ]
-//     }
+    //console.log(product);
+    axiosClient.post(`/product/`, form, {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+    })
+        .then(response => {
+            console.log('Respuesta del servidor:', response.data);
+            cleanForm();
+            getProducts();
+            $('#productModal').modal('hide');
+            Swal.fire({
+                icon: "success",
+                title: "Se registró el producto",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        })
+        .catch(error => {
+            console.error('Error en la solicitud POST:', error);
+            Swal.fire({
+                icon: "error",
+                title: "No fue posible registrar el producto",
+                showConfirmButton: false,
+                timer: 1500
+            });
+        });
     
-// }
+}
+
+const saveAdmin = async () => {
+    const btnSaveAdmin = document.getElementById('btnSaveAdmin');
+    // <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+    btnSaveAdmin.innerHTML = `<div class="spinner-border ms-auto text-light" role="status" aria-hidden="true"></div>`;
+    let person = {
+        "name": document.getElementById('name').value,
+        "lastName": document.getElementById('lastName').value,
+        "address": null,
+        "phone": document.getElementById('phone').value,
+        "email": document.getElementById('email').value,
+        "edad": 0,
+        "sexo": null,
+        "phone": document.getElementById('phone').value,
+    }
+
+    try {
+        personUser = await savePerson(person);
+        console.log(personUser);
+        const form = new FormData();
+        const fileInput = document.getElementById('imageProfile');
+        let selectedFile = fileInput.files[0];
+        form.append('image', selectedFile);
+        form.append('username', document.getElementById('email').value);
+        form.append('password', document.getElementById('password').value);
+        form.append('person', personUser.id);
+        form.append('code', null);
+        form.append('status', 1);
+        form.append('rol', 1);
+        // console.log("Contenido de FormData:");
+        //     for (let pair of form.entries()) {
+        //         console.log(pair[0] + ': ' + pair[1]);
+        //     }
+
+        axiosClient.post(`/user/saveImage`, form, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+            .then(response => {
+                console.log('Respuesta del servidor:', response.data);
+                getAdmins();
+                cleanForm();
+                $('#saveAdminModal').modal('hide');
+                Swal.fire({
+                    icon: "success",
+                    title: "Se registró el administrador",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => {
+                console.error(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "No fue posible registrar el administrador",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+    } catch (error) {
+        console.log(error);
+    } finally {
+        btnSaveAdmin.innerText = `Registrar`;
+    }
+
+    
+    
+}
+const saveDeliver = async () => {
+    const btnSaveDeliver = document.getElementById('btnSaveDeliver');
+    // <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+    btnSaveDeliver.innerHTML = `<div class="spinner-border ms-auto text-light" role="status" aria-hidden="true"></div>`;
+    let person = {
+        "name": document.getElementById('name').value,
+        "lastName": document.getElementById('lastName').value,
+        "address": null,
+        "phone": document.getElementById('phone').value,
+        "email": document.getElementById('email').value,
+        "edad": 0,
+        "sexo": null,
+        "phone": document.getElementById('phone').value,
+    }
+
+    try {
+        personUser = await savePerson(person);
+        console.log(personUser);
+        const form = new FormData();
+        const fileInput = document.getElementById('imageProfile');
+        let selectedFile = fileInput.files[0];
+        form.append('image', selectedFile);
+        form.append('username', document.getElementById('email').value);
+        form.append('password', document.getElementById('password').value);
+        form.append('person', personUser.id);
+        form.append('code', null);
+        form.append('status', 1);
+        form.append('rol', 2);
+        // console.log("Contenido de FormData:");
+        //     for (let pair of form.entries()) {
+        //         console.log(pair[0] + ': ' + pair[1]);
+        //     }
+
+        axiosClient.post(`/user/saveImage`, form, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        })
+            .then(response => {
+                console.log('Respuesta del servidor:', response.data);
+                getDelivers();
+                cleanForm();
+                $('#saveDeliverModal').modal('hide');
+                Swal.fire({
+                    icon: "success",
+                    title: "Se registró el repartidor",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(error => {
+                console.error(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "No fue posible registrar el repartidor",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+    } catch (error) {
+        console.log(error);
+    } finally{
+        btnSaveDeliver.innerText = `Registrar`;
+    }
+}
+
+const cleanForm = () => {
+    document.getElementById('name').value = "";
+    document.getElementById('lastName').value = "";
+    document.getElementById('phone').value = "";
+    document.getElementById('email').value = "";
+    document.getElementById('password').value = "";
+    document.getElementById('imageProfile').value = "";
+    document.getElementById('passwordRepeat').value = "";
+}
+
+const getDeliverById = async (id) => {
+    try {
+        const response = await axiosClient.get(`/person/${id}`);
+        document.getElementById('nameUpdate').value = response.data.name;
+        document.getElementById('lastNameUpdate').value = response.data.lastName;
+        document.getElementById('phoneUpdate').value = response.data.phone;
+        document.getElementById('idUpdate').value = response.data.id;
+        document.getElementById('emailUpdate').value = response.data.email;
+        $('#updateDeliverModal').modal('show');
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const updateDeliver = async () => {
+    const id = document.getElementById('idUpdate').value;
+
+    let person = {
+        "id": id,
+        "name": document.getElementById('nameUpdate').value,
+        "lastName": document.getElementById('lastNameUpdate').value,
+        "phone": document.getElementById('phoneUpdate').value,
+        "email": document.getElementById('emailUpdate').value
+    }
+    console.log(person);
+    try {
+        const response = await axiosClient.put(`/person/${id}`, person);
+        $('#updateDeliverModal').modal('hide');
+        getDelivers();
+        Swal.fire({
+            icon: "success",
+            title: "Se actulizó la información del repartidor",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    } catch (error) {
+        console.log(error);
+        Swal.fire({
+            icon: "error",
+            title: "No fue posible actualizar al repartidor",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+
+}
+
+const updateAdmin = async () => {
+    const id = document.getElementById('idUpdate').value;
+
+    let person = {
+        "id": id,
+        "name": document.getElementById('nameUpdate').value,
+        "lastName": document.getElementById('lastNameUpdate').value,
+        "phone": document.getElementById('phoneUpdate').value,
+        "email": document.getElementById('emailUpdate').value
+    }
+    console.log(person);
+    try {
+        const response = await axiosClient.put(`/person/${id}`, person);
+        $('#updateDeliverModal').modal('hide');
+        getAdmins();
+        Swal.fire({
+            icon: "success",
+            title: "Se actulizó la información del repartidor",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    } catch (error) {
+        console.log(error);
+        Swal.fire({
+            icon: "error",
+            title: "No fue posible actualizar al repartidor",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    }
+
+}
 
