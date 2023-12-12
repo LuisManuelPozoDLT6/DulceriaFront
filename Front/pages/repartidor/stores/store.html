@@ -36,7 +36,7 @@
         </ul>
         <div class="ms-auto">
           <span id="userNameLogged" class="text-light me-2"></span>
-          <button id="btnLogout" class="btn btn-rosa rounded-pill"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          <button id="btnLogout" class="btn text-white"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
         </div>
       </div>
     </div>
@@ -72,8 +72,8 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="visitDate">Visita 12 de Mayo del 2023</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <h5 class="modal-title" id="visitDate"></h5>
+          <h4 id="statusOrder"></h4>
         </div>
         <div class="modal-body" id="modalVisitInfoBody">
           <div class="container">
@@ -87,26 +87,20 @@
                       </ul>
                     </div>
                     <h5 class="text-secondary" style="margin-bottom: -5px;">Subtotal</h5>
-                    <h1 class="text-rosa fw-bold" id="subTotal">$168.00</h1>
+                    <h1 class="text-rosa fw-bold" id="subTotal"></h1>
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 " >
-                <h6 class="mb-2">Observaciones</h6>
-                <p id="observaciones">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam nostrum officia dolor, blanditiis adipisci consectetur non consequatur id soluta eveniet culpa! Aspernatur exercitationem voluptas velit odit est, ducimus magni delectus!</p>
-                <img src="../../assets/images/paletas.png" width="100px" height="100px" class="img-thumbnail img-cover" alt="...">
-                <img src="../../assets/images/paletas.png" width="100px" height="100px" class="img-thumbnail img-cover" alt="...">
-                <form action="" style="width: 250px; bottom: 0;" class="mt-5">
-                  <div class="input-group">
-                    <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                      <option selected>Estado</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                    <button class="btn btn-rosa" type="button">Guardar</button>
-                  </div>
-                </form>
+              
+              <div class="col-md-6 d-flex flex-column" >
+                
+                <div id="observaciones">
+                  
+                </div>
+                <div class="mt-auto" id="btnStatus">
+                  
+                </div>
+                
               </div>
             </div>
           </div>
@@ -126,7 +120,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form onsubmit="saveVisit();">
             <div class="container">
               <div class="row">
                 <div class="col mb-2">
@@ -139,9 +132,8 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-morado">Registrar</button>
+          <button type="submit" class="btn btn-morado" onclick="saveVisit();">Registrar</button>
         </div>
-      </form>
       </div>
     </div>
   </div>

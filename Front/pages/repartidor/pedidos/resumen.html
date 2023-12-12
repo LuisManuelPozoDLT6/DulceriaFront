@@ -36,7 +36,7 @@
                 </ul>
                 <div class="ms-auto">
                     <span id="userNameLogged" class="text-light me-2">Nombre de Usuario</span>
-                    <button id="btnLogout" class="btn btn-rosa rounded-pill"><i
+                    <button id="btnLogout" class="btn text-white"><i
                             class="fa-solid fa-arrow-right-from-bracket"></i></button>
                 </div>
             </div>
@@ -67,29 +67,25 @@
                     <form>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Próxima visita</label>
-                            <input type="date" class="form-control" id="visitDay"
-                                aria-describedby="emailHelp">
+                            <input type="date" class="form-control" id="visitDay" aria-describedby="emailHelp">
                         </div>
                         <h6 class="text-center">Registrar incidencia</h6>
-                        
+
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="mb-3">
                                     <label for="exampleInputPassword1" class="form-label">Descripción</label>
                                     <textarea class="form-control" placeholder="Leave a comment here"
-                                        id="floatingTextarea"></textarea>
+                                        id="incidenceDescription"></textarea>
                                 </div>
+                                <button class="btn btn-rosa btn-sm" type="button" onclick="initializeCamera()">
+                                    <i class="fa-solid fa-camera"></i>
+                                </button>
                             </div>
                             <div class="col-md-4">
-                                <div class="d-flex align-items-center justify-content-center bg-rosa" style="height: 100px; width: 100px;">
-                                    <button class="btn btn-rosa btn-sm" type="button" onclick="initializeCamera()">
-                                        <i class="fa-solid fa-camera"></i>
-                                    </button>
-                                    <video id="player" autoplay style="height: 100px"></video>
-                                </div>
+                                
+                                <video id="player" autoplay style="height: 110px"></video>
                                 <div id="modal-camera" class="panel-body" style="display: none">
-                                    
-                                    <br />
                                     <button id="takePhoto" type="button" class="btn btn-rosa" onclick="takeAPhoto()">
                                         <i class="bi bi-check-circle-fill"></i> &nbsp;Tomar foto
                                     </button>
@@ -97,17 +93,17 @@
                             </div>
                         </div>
                         <div class="mb-3">
-                            
+
                         </div>
-                        
-                        
+
+
                         <div class="mt-3 d-flex justify-content-between align-items-center">
                             <div class="flex-column">
                                 <h5 class="text-secondary" style="margin-bottom: -5px;">Subtotal</h5>
                                 <h1 class="text-rosa fw-bold" id="subTotal">$168.00</h1>
                             </div>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                class="btn btn-morado mt-3">Hacer pedido</button>
+                            <button type="button" id="btnSaveOrder" class="btn btn-morado mt-3"
+                                onclick="registerOrder()">Hacer pedido</button>
                         </div>
                     </form>
 

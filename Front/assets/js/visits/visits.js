@@ -51,7 +51,7 @@ const getDeliverVisits = async () => {
         }else{
             response.data.forEach((visit, index) => {
                 visits += `
-                    <div class="card shadow-sm mb-3" onclick="getStoreId(${visit.store.id}, ${visit.id})">
+                    <div class="card shadow-sm mb-3 card-visit" onclick="getStoreId(${visit.store.id}, ${visit.id})">
                         <div class="card-body align-items-center">
                             <div class="row justify-content-between align-items-center">
                                 <div class="col-8 d-flex align-items-center">

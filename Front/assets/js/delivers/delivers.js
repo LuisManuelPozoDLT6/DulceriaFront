@@ -298,6 +298,7 @@ const saveDeliver = async () => {
         const form = new FormData();
         const fileInput = document.getElementById('imageProfile');
         let selectedFile = fileInput.files[0];
+        console.log(selectedFile);
         form.append('image', selectedFile);
         form.append('username', document.getElementById('email').value);
         form.append('password', document.getElementById('password').value);

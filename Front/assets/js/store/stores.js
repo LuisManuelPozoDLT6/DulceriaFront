@@ -288,20 +288,78 @@ const getVisits = async (id) => {
     return visits;
 }
 
+const setStatus = async (id) => {
+    Swal.fire({
+        title: "Marcar orden como entregada?",
+        icon: "question",
+        showCancelButton: true,
+        confirmButtonColor: "#4B2883",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Entregar",
+        cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await axiosClient.put(`/orders/status/${id}`)
+                Swal.fire({
+                    icon: "success",
+                    title: "Se ha marcado la orden como entregada!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                $('#infoVisit').modal('hide');
+            } catch (error) {
+                console.log(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Ocurrió un error al marcar de entregado la orden",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } else {
+            Swal.fire({
+                title: "Cancelado",
+                text: "La operación ha sido cancelada.",
+                icon: "error"
+            });
+        }
+    });
+}
+
 const getVisitInfo = async (id) => {
     let productsOrder = ``;
     let subTotal = 0;
+    let observaciones = ``;
+    let statusOrder = ``;
     
     try {
         const response = await axiosClient.get(`/orders/visit/${id}`);
         listProducts = response.data.productList;
         document.getElementById('visitDate').innerText = `Visita ${response.data.visit.day_visit}`;
         if (response.data.visit.status.id != 1) {
+
+            btnStatus = `
+            <button type="button" data-bs-toggle="modal" onclick="setStatus(${response.data.id})" class="btn btn-rosa rounded-pill mt-3">
+                    <i class="fa-solid fa-check"></i> Pedido entregado</button>
+            `;
+
+            response.data.status.id == 1 ? document.getElementById('btnStatus').innerHTML = btnStatus : document.getElementById('btnStatus').innerHTML = '';
             
-            if (response.data && response.data.observaciones !== null && response.data.observaciones !== undefined) {
-                document.getElementById('observaciones').innerText = `Visita ${response.data.observaciones}`;
-            }
+           statusOrder = `
+                <span class="badge ${response.data.status.id != 1 ? 'bg-success' : 'bg-warning'} ">${response.data.status.desciprtion}</span>
+           `;
+
+           document.getElementById('statusOrder').innerHTML = statusOrder;
+            
+            observaciones = `
+                <h3 class="mb-2">Observaciones</h3>
+                <p>${response.data.observaciones == '' ? 'No hay observaciones' : response.data.observaciones}</p>
+                ${response.data.observaciones != '' ? `<img src="${response.data.incidencias}" width="200px" height="200px" class="img-thumbnail img-cover" alt="...">` : '' }
                 
+            `;
+                
+            document.getElementById('observaciones').innerHTML = observaciones;
     
             listProducts.forEach(product => {
                 subTotal += product.cantidad * product.product.price;
@@ -324,7 +382,7 @@ const getVisitInfo = async (id) => {
             })
     
             document.getElementById('listaProducts').innerHTML = productsOrder;
-            document.getElementById('subTotal').innerText = `$${subTotal}`;
+            document.getElementById('subTotal').innerText = `$${parseFloat(subTotal).toFixed(2)}`;
             $('#infoVisit').modal('show');
             
         }else{
