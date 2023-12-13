@@ -30,11 +30,11 @@
                         <a class="nav-link" aria-current="page" href="../../pages/stores/stores.html">Tiendas</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link active" aria-current="page" href="../../pages/productos/productos.html">Productos</a>
+                        <a class="nav-link active" aria-current="page"
+                            href="../../pages/productos/productos.html">Productos</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " aria-current="page"
-                            href="../../pages/pedidos/pedidos.html">Pedidos</a>
+                        <a class="nav-link " aria-current="page" href="../../pages/pedidos/pedidos.html">Pedidos</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link " aria-current="page"
@@ -57,7 +57,7 @@
                     <div class="card-body">
                         <div class="overflow-auto" style="height: 54vh;">
                             <ul class="list-group list-group-flush" id="listaProductos">
-                                
+
 
                             </ul>
                         </div>
@@ -66,17 +66,23 @@
             </div>
             <div class="col-md-6">
                 <div class="container">
-                    <form>
+                    <form class="needs-validation" novalidate>
                         <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Próxima visita</label>
-                            <input type="date" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                            <label for="visitDate" class="form-label">Próxima visita</label>
+                            <input type="date" class="form-control" id="visitDate" aria-describedby="emailHelp"
+                                required>
+                            <div class="invalid-feedback">
+                                Por favor, selecciona la fecha de la próxima visita.
+                            </div>
                         </div>
                         <h6 class="text-center">Registrar incidencia</h6>
                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Descripción</label>
-                            <textarea class="form-control" placeholder="Leave a comment here"
-                                id="floatingTextarea"></textarea>
+                            <label for="description" class="form-label">Descripción</label>
+                            <textarea class="form-control" placeholder="Leave a comment here" id="description"
+                                required></textarea>
+                            <div class="invalid-feedback">
+                                Por favor, ingresa una descripción.
+                            </div>
                         </div>
                         <div class="mb-3">
                             <label for="formFile" class="form-label">Fotografías</label>
@@ -91,9 +97,7 @@
                                 class="btn btn-morado mt-3">Hacer pedido</button>
                         </div>
                     </form>
-
                 </div>
-
             </div>
         </div>
     </div>

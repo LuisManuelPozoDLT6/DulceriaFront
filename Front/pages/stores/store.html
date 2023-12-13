@@ -19,52 +19,51 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-morado text-center">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="../../assets/images/logo-blanco.png" alt="" width="45" height="45">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item ">
-                    <a class="nav-link active" aria-current="page" href="../../pages/stores/stores.html">Tiendas</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " aria-current="page" href="../../pages/productos/productos.html">Productos</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " aria-current="page"
-                        href="../../pages/pedidos/pedidos.html">Pedidos</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link " aria-current="page"
-                        href="../../pages/repartidores/repartidores.html">Repartidores</a>
-                </li>
-            </ul>
-        </div>
+      <a class="navbar-brand" href="#">
+        <img src="../../assets/images/logo-blanco.png" alt="" width="45" height="45">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item ">
+            <a class="nav-link active" aria-current="page" href="../../pages/stores/stores.html">Tiendas</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " aria-current="page" href="../../pages/productos/productos.html">Productos</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " aria-current="page" href="../../pages/pedidos/pedidos.html">Pedidos</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link " aria-current="page" href="../../pages/repartidores/repartidores.html">Repartidores</a>
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
 
   <div class="container mt-3">
     <div class="row">
       <div class="col-md-4 d-flex" id="store">
-        
+
       </div>
       <div class="col-md-8 overflow-auto" style="padding-left: 20px; height: 80vh;">
         <div class="d-flex align-items-center" id="deliver">
-          
+
         </div>
         <hr>
         <div class="mb-3 container d-flex justify-content-between align-items-center">
           <h4 class="mt-3">Visitas</h4>
-          <button type="button" data-bs-toggle="modal" data-bs-target="#saveVisitModal" class="btn btn-rosa rounded-pill mt-3">
+          <button type="button" data-bs-toggle="modal" data-bs-target="#saveVisitModal"
+            class="btn btn-rosa rounded-pill mt-3">
             <i class="fa-solid fa-plus"></i> Registrar</button>
         </div>
         <div class="container">
           <div class="row" id="visits">
-            
+
           </div>
         </div>
       </div>
@@ -85,10 +84,10 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="card ">
-                  <div class="card-body" >
+                  <div class="card-body">
                     <div class="overflow-auto" style="height: 54vh;">
                       <ul class="list-group list-group-flush" id="listaProducts">
-                        
+
                       </ul>
                     </div>
                     <h5 class="text-secondary" style="margin-bottom: -5px;">Subtotal</h5>
@@ -96,11 +95,15 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-6 " >
+              <div class="col-md-6 ">
                 <h6 class="mb-2">Observaciones</h6>
-                <p id="observaciones">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam nostrum officia dolor, blanditiis adipisci consectetur non consequatur id soluta eveniet culpa! Aspernatur exercitationem voluptas velit odit est, ducimus magni delectus!</p>
-                <img src="../../assets/images/paletas.png" width="100px" height="100px" class="img-thumbnail img-cover" alt="...">
-                <img src="../../assets/images/paletas.png" width="100px" height="100px" class="img-thumbnail img-cover" alt="...">
+                <p id="observaciones">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam nostrum officia
+                  dolor, blanditiis adipisci consectetur non consequatur id soluta eveniet culpa! Aspernatur
+                  exercitationem voluptas velit odit est, ducimus magni delectus!</p>
+                <img src="../../assets/images/paletas.png" width="100px" height="100px" class="img-thumbnail img-cover"
+                  alt="...">
+                <img src="../../assets/images/paletas.png" width="100px" height="100px" class="img-thumbnail img-cover"
+                  alt="...">
                 <form action="" style="width: 250px; bottom: 0;" class="mt-5">
                   <div class="input-group">
                     <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
@@ -123,6 +126,7 @@
     </div>
   </div>
 
+  <!-- registro -->
   <div class="modal fade" id="saveVisitModal" tabindex="-1" aria-labelledby="saveVisitModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
       <div class="modal-content">
@@ -131,12 +135,13 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form class="needs-validation" novalidate>
             <div class="container">
               <div class="row">
                 <div class="col mb-2">
-                  <label for="exampleInputEmail1" class="form-label" >Día de la visita</label>
-                  <input type="date" class="form-control" id="visitDay" aria-describedby="emailHelp">
+                  <label for="visitDay" class="form-label">Día de la visita</label>
+                  <input type="date" class="form-control" id="visitDay" aria-describedby="emailHelp" required>
+                  <div class="invalid-feedback">Por favor, selecciona el día de la visita.</div>
                 </div>
               </div>
             </div>
@@ -150,7 +155,9 @@
     </div>
   </div>
 
-  <div class="modal fade" id="updateStoreModal" tabindex="-1" aria-labelledby="updateStoreModalLabel" aria-hidden="true">
+  <!-- editar -->
+  <div class="modal fade" id="updateStoreModal" tabindex="-1" aria-labelledby="updateStoreModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -158,39 +165,45 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form class="needs-validation" novalidate>
             <div class="container">
               <div class="row">
                 <p style="font-weight: bold;">Datos de la tienda</p>
                 <hr style="margin-top: -7px;">
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputEmail1" class="form-label" >Nombre</label>
-                  <input type="text" class="form-control" id="nameUpdate" aria-describedby="emailHelp">
+                  <label for="nameUpdate" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nameUpdate" aria-describedby="emailHelp" required>
+                  <div class="invalid-feedback">Por favor, ingresa el nombre de la tienda.</div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label" >RFC</label>
-                  <input type="text" class="form-control" id="rfcUpdate">
+                  <label for="rfcUpdate" class="form-label">RFC</label>
+                  <input type="text" class="form-control" id="rfcUpdate" required>
+                  <div class="invalid-feedback">Por favor, ingresa el RFC de la tienda.</div>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label" >Direccion</label>
-                  <input type="text" class="form-control" id="addressUpdate">
-                  <div class="form-text">Calle numero, colonia c.p., municipio, estado</div>
+                  <label for="addressUpdate" class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="addressUpdate" required>
+                  <div class="form-text">Calle número, colonia C.P., municipio, estado</div>
+                  <div class="invalid-feedback">Por favor, ingresa la dirección de la tienda.</div>
                 </div>
-                <p style="font-weight: bold;">Dueño o contácto de la tienda</p>
+                <p style="font-weight: bold;">Dueño o contacto de la tienda</p>
                 <hr style="margin-top: -7px;">
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputEmail1" class="form-label" >Nombre completo</label>
-                  <input type="text" class="form-control" aria-describedby="emailHelp" id="ownerNameUpdate">
+                  <label for="ownerNameUpdate" class="form-label">Nombre completo</label>
+                  <input type="text" class="form-control" aria-describedby="emailHelp" id="ownerNameUpdate" required>
+                  <div class="invalid-feedback">Por favor, ingresa el nombre del dueño o contacto de la tienda.</div>
                 </div>
                 <input type="text" hidden class="form-control" aria-describedby="emailHelp" id="idOwnerUpdate">
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label" >Teléfono</label>
-                  <input type="text" class="form-control" id="phoneUpdate">
+                  <label for="phoneUpdate" class="form-label">Teléfono</label>
+                  <input type="text" class="form-control" id="phoneUpdate" required>
+                  <div class="invalid-feedback">Por favor, ingresa el teléfono del dueño o contacto de la tienda.</div>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Repartidor asignado</label>
-                  <select class="form-select" aria-label="Default select example" id="delivers">
+                  <label for="delivers" class="form-label">Repartidor asignado</label>
+                  <select class="form-select" aria-label="Default select example" id="delivers" required>
                   </select>
+                  <div class="invalid-feedback">Por favor, selecciona un repartidor.</div>
                 </div>
               </div>
             </div>
@@ -212,9 +225,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-    <script>
-      getStoreById()
-    </script>
+  <script>
+    getStoreById()
+  </script>
 </body>
 
 </html>

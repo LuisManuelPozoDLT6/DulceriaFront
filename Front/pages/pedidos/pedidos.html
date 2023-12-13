@@ -72,14 +72,16 @@
                 </div>
                 <div class="modal-footer">
                     <div class="input-group" style="width: 70px;">
-
-                        <input type="number" class="form-control" id="cantidad" value="1" oninput="updatePrice()">
-
+                        <label for="cantidad" class="visually-hidden">Cantidad</label>
+                        <input type="number" class="form-control" id="cantidad" value="1" oninput="updatePrice()"
+                            required>
+                        <div class="invalid-feedback">
+                            Por favor, ingresa una cantidad válida.
+                        </div>
                     </div>
                     <button type="button" id="btnAdd" class="btn btn-morado" onclick="addProduct()">
-
+                        Agregar
                     </button>
-
                 </div>
             </div>
         </div>
