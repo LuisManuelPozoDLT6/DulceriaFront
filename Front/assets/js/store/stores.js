@@ -261,7 +261,7 @@ const getStoreId = (id) => {
 
 const getDelivers = async () => {
     try {
-        const response = await axiosClient.post(`/user/Repatidor/`, {id:2});
+        const response = await axiosClient.get(`/user/Repatidor/2`);
         console.log(response.data);
         
         let selectDelivers = $("#delivers");
@@ -465,5 +465,5 @@ const getStoreById = async () => {
         console.log(error);
     }
 }
-
+getDelivers();
 

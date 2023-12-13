@@ -14,7 +14,7 @@ const savePerson = async (person) => {
 const getDelivers = async () => {
     let delivers = ``;
     try {
-        const response = await axiosClient.post(`/user/Repatidor/`, {id:2})
+        const response = await axiosClient.get(`/user/Repatidor/2`)
         response.data.forEach((deliver, index) => {
             delivers += `
                 <tr>
