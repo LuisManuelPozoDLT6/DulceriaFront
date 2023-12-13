@@ -17,46 +17,47 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-morado text-center sticky-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="../../../assets/images/logo-blanco.png" alt="" width="45" height="45">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav me-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../stores/stores.html">Tiendas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="../productos/productos.html">Productos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="../repartidores/repartidores.html">Repartidores</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="../administradores/administradores.html">Administradores</a>
-                </li>
-            </ul>
-            <!-- Aquí se agregan el nombre de usuario y el icono de logout -->
-            <div class="ms-auto">
-                <span id="userNameLogged" class="text-light me-2">Nombre de Usuario</span>
-                <button id="btnLogout" class="btn text-white"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
-            </div>
+      <a class="navbar-brand" href="#">
+        <img src="../../../assets/images/logo-blanco.png" alt="" width="45" height="45">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../stores/stores.html">Tiendas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="../productos/productos.html">Productos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="../repartidores/repartidores.html">Repartidores</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="../administradores/administradores.html">Administradores</a>
+          </li>
+        </ul>
+        <!-- Aquí se agregan el nombre de usuario y el icono de logout -->
+        <div class="ms-auto">
+          <span id="userNameLogged" class="text-light me-2">Nombre de Usuario</span>
+          <button id="btnLogout" class="btn text-white"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
         </div>
+      </div>
     </div>
-</nav>
+  </nav>
 
 
   <div class="mb-3 container d-flex justify-content-end">
-    <button type="button" data-bs-toggle="modal" data-bs-target="#saveStoreModal" class="btn btn-rosa rounded-pill mt-3">
+    <button type="button" data-bs-toggle="modal" data-bs-target="#saveStoreModal"
+      class="btn btn-rosa rounded-pill mt-3">
       <i class="fa-solid fa-plus"></i> Registrar</button>
   </div>
 
   <div class="container ">
     <div class="row " id="stores">
-      
+
     </div>
   </div>
   </div>
@@ -70,38 +71,56 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form class="needs-validation" novalidate>
             <div class="container">
               <div class="row">
                 <p style="font-weight: bold;">Datos de la tienda</p>
                 <hr style="margin-top: -7px;">
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputEmail1" class="form-label" >Nombre</label>
-                  <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                  <label for="name" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="name" aria-describedby="emailHelp" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa el nombre de la tienda.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label" >RFC</label>
-                  <input type="text" class="form-control" id="rfc">
+                  <label for="rfc" class="form-label">RFC</label>
+                  <input type="text" class="form-control" id="rfc" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa el RFC de la tienda.
+                  </div>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label" >Direccion</label>
-                  <input type="text" class="form-control" id="address">
-                  <div class="form-text">Calle numero, colonia c.p., municipio, estado</div>
+                  <label for="address" class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="address" required>
+                  <div class="form-text">Calle número, colonia, código postal, municipio, estado</div>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa la dirección completa.
+                  </div>
                 </div>
                 <p style="font-weight: bold;">Dueño o contácto de la tienda</p>
                 <hr style="margin-top: -7px;">
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputEmail1" class="form-label" >Nombre completo</label>
-                  <input type="text" class="form-control" aria-describedby="emailHelp" id="ownerName">
+                  <label for="ownerName" class="form-label">Nombre completo</label>
+                  <input type="text" class="form-control" aria-describedby="emailHelp" id="ownerName" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa el nombre completo del dueño o contacto.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label" >Teléfono</label>
-                  <input type="text" class="form-control" id="phone">
+                  <label for="phone" class="form-label">Teléfono</label>
+                  <input type="text" class="form-control" id="phone" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa el teléfono del dueño o contacto.
+                  </div>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Repartidor asignado</label>
-                  <select class="form-select" aria-label="Default select example" id="delivers">
+                  <label for="delivers" class="form-label">Repartidor asignado</label>
+                  <select class="form-select" aria-label="Default select example" id="delivers" required>
                   </select>
+                  <div class="invalid-feedback">
+                    Por favor, selecciona un repartidor.
+                  </div>
                 </div>
               </div>
             </div>
@@ -115,6 +134,7 @@
     </div>
   </div>
 
+
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../../../assets/js/axios/axios-intance.js"></script>
   <script src="../../../assets/js/jquery-3.7.1.min.js"></script>
@@ -124,10 +144,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
     crossorigin="anonymous"></script>
-    <script>
-      getStores();
-      getDelivers();
-    </script>
+  <script>
+    getStores();
+    getDelivers();
+  </script>
 </body>
 
 </html>

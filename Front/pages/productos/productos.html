@@ -59,6 +59,7 @@
     </div>
   </div>
 
+  <!-- registrar -->
   <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -67,20 +68,24 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form class="needs-validation" novalidate>
             <div class="container">
               <div class="row">
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" aria-describedby="emailHelp" id="name">
+                  <label for="name" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="name" required>
+                  <div class="invalid-feedback">Por favor, ingresa un nombre.</div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label">Precio</label>
-                  <input type="number" class="form-control" id="price">
+                  <label for="price" class="form-label">Precio</label>
+                  <input type="number" class="form-control" id="price" required>
+                  <div class="invalid-feedback">Por favor, ingresa un precio válido.</div>
                 </div>
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Descripción</label>
-                  <textarea class="form-control" placeholder="Leave a comment here" id="description"></textarea>
+                  <label for="description" class="form-label">Descripción</label>
+                  <textarea class="form-control" placeholder="Leave a comment here" id="description"
+                    required></textarea>
+                  <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
                 </div>
                 <div class=" mb-2">
                   <label for="formFile" class="form-label">Fotografía</label>
@@ -99,7 +104,8 @@
   </div>
 
   <!-- edit -->
-  <div class="modal fade" id="productModalUpdate" tabindex="-1" aria-labelledby="productModalUpdateLabel" aria-hidden="true">
+  <div class="modal fade" id="productModalUpdate" tabindex="-1" aria-labelledby="productModalUpdateLabel"
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -107,22 +113,26 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form class="needs-validation" novalidate>
             <div class="container">
               <div class="row">
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputEmail1" class="form-label">Nombre</label>
-                  <input type="text" class="form-control" id="nameUpdate">
+                  <label for="nameUpdate" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nameUpdate" required>
+                  <div class="invalid-feedback">Por favor, ingresa un nombre.</div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label">Precio</label>
-                  <input type="number" class="form-control" id="priceUpdate">
+                  <label for="priceUpdate" class="form-label">Precio</label>
+                  <input type="number" class="form-control" id="priceUpdate" required>
+                  <div class="invalid-feedback">Por favor, ingresa un precio válido.</div>
                 </div>
                 <input hidden type="number" class="form-control" id="idUpdate">
                 <input hidden type="text" class="form-control" id="imageUpdate">
                 <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Descripción</label>
-                  <textarea class="form-control" placeholder="Leave a comment here" id="descriptionUpdate"></textarea>
+                  <label for="descriptionUpdate" class="form-label">Descripción</label>
+                  <textarea class="form-control" placeholder="Leave a comment here" id="descriptionUpdate"
+                    required></textarea>
+                  <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
                 </div>
               </div>
             </div>
@@ -135,6 +145,7 @@
       </div>
     </div>
   </div>
+
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="../../assets/js/axios/axios-intance.js"></script>

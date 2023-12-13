@@ -42,8 +42,7 @@
         </ul>
         <div class="ms-auto">
           <span id="userNameLogged" class="text-light me-2"></span>
-          <button id="btnLogout" class="btn text-white"><i
-              class="fa-solid fa-arrow-right-from-bracket"></i></button>
+          <button id="btnLogout" class="btn text-white"><i class="fa-solid fa-arrow-right-from-bracket"></i></button>
         </div>
       </div>
     </div>
@@ -75,6 +74,7 @@
     </div>
   </div>
 
+  <!-- registrar -->
   <div class="modal fade" id="saveDeliverModal" tabindex="-1" aria-labelledby="saveDeliverModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -84,36 +84,57 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form class="needs-validation" novalidate>
             <div class="container">
               <div class="row">
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputEmail1" class="form-label">Nombre(s)</label>
-                  <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                  <label for="name" class="form-label">Nombre(s)</label>
+                  <input type="text" class="form-control" id="name" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa el nombre del repartidor.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label">Apellido(s)</label>
-                  <input type="text" class="form-control" id="lastName">
+                  <label for="lastName" class="form-label">Apellido(s)</label>
+                  <input type="text" class="form-control" id="lastName" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa el apellido del repartidor.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label">Teléfono</label>
-                  <input type="tel" class="form-control" id="phone">
+                  <label for="phone" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="phone" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa un número de teléfono válido.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label">Correo electrónico</label>
-                  <input type="email" class="form-control" id="email">
+                  <label for="email" class="form-label">Correo electrónico</label>
+                  <input type="email" class="form-control" id="email" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa un correo electrónico válido.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputEmail1" class="form-label">Contraseña</label>
-                  <input type="password" class="form-control" id="password" aria-describedby="emailHelp">
+                  <label for="password" class="form-label">Contraseña</label>
+                  <input type="password" class="form-control" id="password" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa una contraseña.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
-                  <input type="password" class="form-control" id="passwordRepeat">
+                  <label for="passwordRepeat" class="form-label">Repetir contraseña</label>
+                  <input type="password" class="form-control" id="passwordRepeat" required>
+                  <div class="invalid-feedback">
+                    Las contraseñas no coinciden.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="formFile" class="form-label">Fotografía</label>
-                  <input class="form-control" type="file" id="imageProfile">
+                  <label for="imageProfile" class="form-label">Fotografía</label>
+                  <input class="form-control" type="file" id="imageProfile" required>
+                  <div class="invalid-feedback">
+                    Por favor, selecciona una imagen.
+                  </div>
                 </div>
               </div>
             </div>
@@ -127,6 +148,7 @@
     </div>
   </div>
 
+  <!-- editar -->
   <div class="modal fade" id="updateDeliverModal" tabindex="-1" aria-labelledby="updateDeliverModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -136,22 +158,31 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form class="needs-validation" novalidate>
             <div class="container">
               <div class="row">
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputEmail1" class="form-label">Nombre(s)</label>
-                  <input type="text" class="form-control" id="nameUpdate" aria-describedby="emailHelp">
+                  <label for="nameUpdate" class="form-label">Nombre(s)</label>
+                  <input type="text" class="form-control" id="nameUpdate" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa el nombre del repartidor.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label">Apellido(s)</label>
-                  <input type="text" class="form-control" id="lastNameUpdate">
+                  <label for="lastNameUpdate" class="form-label">Apellido(s)</label>
+                  <input type="text" class="form-control" id="lastNameUpdate" required>
+                  <div class="invalid-feedback">
+                    Por favor, ingresa el apellido del repartidor.
+                  </div>
                 </div>
                 <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label">Teléfono</label>
-                  <input type="tel" class="form-control" id="phoneUpdate">
+                  <label for="phoneUpdate" class="form-label">Teléfono</label>
+                  <input type="tel" class="form-control" id="phoneUpdate" required>
                   <input type="tel" class="form-control" hidden id="idUpdate">
                   <input type="tel" class="form-control" hidden id="emailUpdate">
+                  <div class="invalid-feedback">
+                    Por favor, ingresa un número de teléfono válido.
+                  </div>
                 </div>
               </div>
             </div>

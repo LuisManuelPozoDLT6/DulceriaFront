@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-morado text-center">
         <div class="container-fluid">
@@ -27,7 +29,8 @@
                         <a class="nav-link" aria-current="page" href="../../pages/stores/stores.html">Tiendas</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link " aria-current="page" href="../../pages/productos/productos.html">Productos</a>
+                        <a class="nav-link " aria-current="page"
+                            href="../../pages/productos/productos.html">Productos</a>
                     </li>
                     <li class="nav-item active">
                         <a class="nav-link active" aria-current="page"
@@ -43,60 +46,65 @@
     </nav>
 
     <div class="d-flex flex-column align-items-center justify-content-center mt-3" id="tienda">
-        
+
     </div>
 
     <div class="container">
         <div class="row" id="products">
-            
+
         </div>
     </div>
 
     <button class="btn btn-esquina btn-morado rounded-pill" onclick="getOrderInfo()">Ver pedido</button>
 
     <!-- Modal -->
-    <div class="modal fade" id="productModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true" >
+    <div class="modal fade" id="productModal" data-bs-backdrop="static" tabindex="-1"
+        aria-labelledby="productModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="productModalLabel">Agregar a pedido</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cleanInputPrice()"></button>
-            </div>
-            <div class="modal-body text-center" id="modalProduct">
-                
-            </div>
-            <div class="modal-footer">
-                <div class="input-group" style="width: 70px;">
-                    
-                    <input type="number" class="form-control" id="cantidad" value="1" oninput="updatePrice()">
-                    
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Agregar a pedido</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        onclick="cleanInputPrice()"></button>
                 </div>
-                <button type="button" id="btnAdd" class="btn btn-morado" onclick="addProduct()">
-                    
-                </button>
-                
+                <div class="modal-body text-center" id="modalProduct">
+
+                </div>
+                <div class="modal-footer">
+                    <div class="input-group" style="width: 70px;">
+                        <label for="cantidad" class="visually-hidden">Cantidad</label>
+                        <input type="number" class="form-control" id="cantidad" value="1" oninput="updatePrice()"
+                            required>
+                        <div class="invalid-feedback">
+                            Por favor, ingresa una cantidad válida.
+                        </div>
+                    </div>
+                    <button type="button" id="btnAdd" class="btn btn-morado" onclick="addProduct()">
+                        Agregar
+                    </button>
+                </div>
             </div>
-        </div>
         </div>
     </div>
 
     <div class="container mt-5">
-        
+
     </div>
-    
 
 
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="../../assets/js/axios/axios-intance.js"></script>
-        <script src="../../assets/js/jquery-3.7.1.min.js"></script>
-        <script src="../../assets/js/orders/orders.js"></script>
-        <script src="../../assets/js/sweetAlert/sweetalert2.all.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-  <script>
-    getProducts();
-    getStoreById();
-  </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../../assets/js/axios/axios-intance.js"></script>
+    <script src="../../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/js/orders/orders.js"></script>
+    <script src="../../assets/js/sweetAlert/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+        getProducts();
+        getStoreById();
+    </script>
 </body>
+
 </html>

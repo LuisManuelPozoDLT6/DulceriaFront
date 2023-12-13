@@ -74,93 +74,124 @@
         </div>
     </div>
 
+    <!-- registrar -->
     <div class="modal fade" id="saveAdminModal" tabindex="-1" aria-labelledby="saveAdminModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="saveAdminModalLabel">Registro de administrador</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <form>
-              <div class="container">
-                <div class="row">
-                  <div class="col-md-6 mb-2">
-                    <label for="exampleInputEmail1" class="form-label">Nombre(s)</label>
-                    <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-6 mb-2">
-                    <label for="exampleInputPassword1" class="form-label">Apellido(s)</label>
-                    <input type="text" class="form-control" id="lastName">
-                  </div>
-                  <div class="col-md-6 mb-2">
-                    <label for="exampleInputPassword1" class="form-label">Teléfono</label>
-                    <input type="tel" class="form-control" id="phone">
-                  </div>
-                  <div class="col-md-6 mb-2">
-                    <label for="exampleInputPassword1" class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" id="email">
-                  </div>
-                  <div class="col-md-6 mb-2">
-                    <label for="exampleInputEmail1" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="password" aria-describedby="emailHelp">
-                  </div>
-                  <div class="col-md-6 mb-2">
-                    <label for="exampleInputPassword1" class="form-label">Repetir contraseña</label>
-                    <input type="password" class="form-control" id="passwordRepeat">
-                  </div>
-                  <div class="col-md-6 mb-2">
-                      <label for="formFile" class="form-label">Fotografía</label>
-                      <input class="form-control" type="file" id="imageProfile">
-                  </div>
-                </div>
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="saveAdminModalLabel">Registro de administrador</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-            </form>
+              <div class="modal-body">
+                  <form class="needs-validation" novalidate>
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-md-6 mb-2">
+                                  <label for="name" class="form-label">Nombre(s)</label>
+                                  <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" required>
+                                  <div class="invalid-feedback">
+                                      Por favor, ingresa tu nombre.
+                                  </div>
+                              </div>
+                              <div class="col-md-6 mb-2">
+                                  <label for="lastName" class="form-label">Apellido(s)</label>
+                                  <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                  <div class="invalid-feedback">
+                                      Por favor, ingresa tu apellido.
+                                  </div>
+                              </div>
+                              <div class="col-md-6 mb-2">
+                                  <label for="phone" class="form-label">Teléfono</label>
+                                  <input type="tel" class="form-control" id="phone" name="phone" required>
+                                  <div class="invalid-feedback">
+                                      Por favor, ingresa tu número de teléfono.
+                                  </div>
+                              </div>
+                              <div class="col-md-6 mb-2">
+                                  <label for="email" class="form-label">Correo electrónico</label>
+                                  <input type="email" class="form-control" id="email" name="email" required>
+                                  <div class="invalid-feedback">
+                                      Por favor, ingresa una dirección de correo electrónico válida.
+                                  </div>
+                              </div>
+                              <div class="col-md-6 mb-2">
+                                  <label for="password" class="form-label">Contraseña</label>
+                                  <input type="password" class="form-control" id="password" name="password" required>
+                                  <div class="invalid-feedback">
+                                      Por favor, ingresa una contraseña.
+                                  </div>
+                              </div>
+                              <div class="col-md-6 mb-2">
+                                  <label for="passwordRepeat" class="form-label">Repetir contraseña</label>
+                                  <input type="password" class="form-control" id="passwordRepeat" name="passwordRepeat" required>
+                                  <div class="invalid-feedback">
+                                      Las contraseñas no coinciden.
+                                  </div>
+                              </div>
+                              <div class="col-md-6 mb-2">
+                                  <label for="imageProfile" class="form-label">Fotografía</label>
+                                  <input class="form-control" type="file" id="imageProfile" name="imageProfile" required>
+                                  <div class="invalid-feedback">
+                                      Por favor, selecciona una imagen.
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-morado" id="btnSaveAdmin" onclick="saveAdmin()">Registrar</button>
+              </div>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-morado" id="btnSaveAdmin" onclick="saveAdmin()">Registrar</button>
-          </div>
-        </div>
       </div>
-    </div>
+  </div>
 
-    <div class="modal fade" id="updateDeliverModal" tabindex="-1" aria-labelledby="updateDeliverModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="updateDeliverModalLabel">Actualizar administrador</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="container">
-              <div class="row">
-                <div class="col-md-6 mb-2">
-                  <label for="exampleInputEmail1" class="form-label">Nombre(s)</label>
-                  <input type="text" class="form-control" id="nameUpdate" aria-describedby="emailHelp">
-                </div>
-                <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label">Apellido(s)</label>
-                  <input type="text" class="form-control" id="lastNameUpdate">
-                </div>
-                <div class="col-md-6 mb-2">
-                  <label for="exampleInputPassword1" class="form-label">Teléfono</label>
-                  <input type="tel" class="form-control" id="phoneUpdate">
-                  <input type="tel" class="form-control" hidden id="idUpdate">
-                  <input type="tel" class="form-control" hidden id="emailUpdate">
-                </div>
+    <!-- actualizar -->
+    <div class="modal fade" id="updateDeliverModal" tabindex="-1" aria-labelledby="updateDeliverModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="updateDeliverModalLabel">Actualizar administrador</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" id="btnSaveDeliver" class="btn btn-morado" onclick="updateAdmin()">Modificar</button>
-        </div>
+              <div class="modal-body">
+                  <form class="needs-validation" novalidate>
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-md-6 mb-2">
+                                  <label for="nameUpdate" class="form-label">Nombre(s)</label>
+                                  <input type="text" class="form-control" id="nameUpdate" name="nameUpdate" aria-describedby="nameUpdateHelp" required>
+                                  <div class="invalid-feedback">
+                                      Por favor, ingresa tu nombre.
+                                  </div>
+                              </div>
+                              <div class="col-md-6 mb-2">
+                                  <label for="lastNameUpdate" class="form-label">Apellido(s)</label>
+                                  <input type="text" class="form-control" id="lastNameUpdate" name="lastNameUpdate" required>
+                                  <div class="invalid-feedback">
+                                      Por favor, ingresa tu apellido.
+                                  </div>
+                              </div>
+                              <div class="col-md-6 mb-2">
+                                  <label for="phoneUpdate" class="form-label">Teléfono</label>
+                                  <input type="tel" class="form-control" id="phoneUpdate" name="phoneUpdate" required>
+                                  <input type="tel" class="form-control" hidden id="idUpdate" name="idUpdate">
+                                  <input type="tel" class="form-control" hidden id="emailUpdate" name="emailUpdate">
+                                  <div class="invalid-feedback">
+                                      Por favor, ingresa tu número de teléfono.
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" id="btnSaveDeliver" class="btn btn-morado" onclick="updateAdmin()">Modificar</button>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
 
 
