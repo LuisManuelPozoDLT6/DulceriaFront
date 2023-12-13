@@ -77,7 +77,7 @@ const saveOwner = async (owner) => {
 const getById = async () => {
     const storeId = localStorage.getItem('selectedStoreId');
     try {
-        const responseDeliver = await axiosClient.post(`/user/Repatidor/`, {id:2});
+        const responseDeliver = await axiosClient.get(`/user/Repatidor/2`);
         console.log(responseDeliver);
         let selectDelivers = $("#delivers");
         const response = await axiosClient.get(`/store/${storeId}`);
@@ -421,7 +421,7 @@ const getStoreById = async () => {
                 <div class="d-flex mrl-3 flex-column">
                     <p class="text-white d-flex align-items-center"><i class="fa-solid fa-location-dot"></i>${response.data.address}</p>
                     <p class="text-white d-flex align-items-center"><i class="fa-solid fa-circle"></i>${response.data.rfc}</p>
-                    <p class="text-white d-flex align-items-center"><i class="fa-solid fa-user"></i>${response.data.owner.name + ' ' + response.data.owner.lastName}</p>
+                    <p class="text-white d-flex align-items-center"><i class="fa-solid fa-user"></i>${response.data.owner.name}</p>
                     <p class="text-white d-flex align-items-center"><i class="fa-solid fa-phone"></i>${response.data.owner.phone}</p>
                 </div>
             </div>

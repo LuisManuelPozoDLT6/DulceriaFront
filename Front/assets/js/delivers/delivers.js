@@ -49,7 +49,7 @@ const getDelivers = async () => {
 const getAdmins = async () => {
     let delivers = ``;
     try {
-        const response = await axiosClient.post(`/user/Repatidor/`, {id:1})
+        const response = await axiosClient.get(`/user/Repatidor/1`)
         response.data.forEach((deliver, index) => {
             delivers += `
                 <tr>
@@ -63,7 +63,7 @@ const getAdmins = async () => {
                     <td>${deliver.person.phone}</td>
                     <td>${deliver.person.email}</td>
                     <td class="text-end">
-                        <button type="button" onclick="setStatus(${deliver.id})" class="btn bg-morado btn-circle-table m-1"><i
+                        <button type="button" onclick="setStatusAdmin(${deliver.id})" class="btn bg-morado btn-circle-table m-1"><i
                                     class="fa-solid fa-power-off" ></i></button>
                         <button type="button" onclick="getDeliverById(${deliver.person.id})"  class="btn bg-morado btn-circle-table m-1"><i
                             class="fa-solid fa-pen-to-square"></i></button>
@@ -76,6 +76,45 @@ const getAdmins = async () => {
     } catch (error) {
         console.log(error);
     }
+}
+
+const setStatusAdmin = async (id) => {
+    Swal.fire({
+        title: "Estás seguro de dar de baja a este usuario?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#4B2883",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Dar de baja",
+        cancelButtonText: "Cancelar",
+    }).then(async (result) => {
+        if (result.isConfirmed) {
+            try {
+                const response = await axiosClient.put(`/user/status/${id}`)
+                getAdmins();
+                Swal.fire({
+                    icon: "success",
+                    title: "Se ha dado de baja al usuario",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            } catch (error) {
+                console.log(error);
+                Swal.fire({
+                    icon: "error",
+                    title: "Ocurrió un error al dar de baja al usuario",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        } else {
+            Swal.fire({
+                title: "Cancelado",
+                text: "La operación ha sido cancelada.",
+                icon: "error"
+            });
+        }
+    });
 }
 
 const setStatus = async (id) => {
