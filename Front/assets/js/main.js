@@ -1,5 +1,7 @@
 const btnLogout = document.getElementById('btnLogout');
 
+
+
 const changeView = (role) => {
     role = role;
     switch (role) {
