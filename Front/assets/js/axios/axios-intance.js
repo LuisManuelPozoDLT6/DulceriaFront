@@ -1,5 +1,6 @@
 const axiosClient = axios.create({
-    baseURL: 'http://localhost:8090/api',
+    // baseURL: 'http://localhost:8090/api',
+    baseURL: 'http://3.212.15.59:8090/api'
   });
 
   axiosClient.interceptors.response.use(
